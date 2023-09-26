@@ -11,21 +11,23 @@ import Square from "./Square"
 export default function board() { 
     return (
         <>
-        <div className="board-row">
-            <Square/>
-            <Square/>
-            <Square/>
-        </div>
-        <div className="board-row">
-            <Square/>
-            <Square/>
-            <Square/>
-        </div>
-        <div className="board-row">
-            <Square/>
-            <Square/>
-            <Square/>
-        </div>
+            <div className="mt-4 mb-12 p-4 rounded-sm bg-gradient-to-bl from-violet-800 to-cyan-500">
+                <div className="board-row">
+                        <Square/>
+                        <Square/>
+                        <Square/>
+                </div>
+                <div className="board-row">
+                    <Square/>
+                    <Square/>
+                    <Square/>
+                </div>
+                <div className="board-row">
+                    <Square/>
+                    <Square/>
+                    <Square/>
+                </div>
+            </div>
         </>
     )
 }
