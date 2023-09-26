@@ -6,7 +6,9 @@ import React from "react";
 export default function Square ({ value }) {
     return (
         <>
-            <div className="square">{value}</div>
+            <div className="square">
+                <button>{value}</button>
+            </div>
         </>
     )
 }
