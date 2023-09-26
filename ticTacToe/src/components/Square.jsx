@@ -9,7 +9,7 @@ import React from "react";
 
 export default function Square ({ value }) {
     function handleClick() {
-        console.log("Clicked : D")
+        console.log(`Clicked square number: ${value} :D`)
     }
     return (
         <>
