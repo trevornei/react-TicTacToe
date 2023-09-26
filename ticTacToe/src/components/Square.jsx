@@ -1,9 +1,12 @@
 import React from "react";
 
-export default function Square () {
+// Now pass down { value } as a prop.
+// Then pass value into the div by escaping into JSX
+
+export default function Square ({ value }) {
     return (
         <>
-            <div className="square">1</div>
+            <div className="square">{value}</div>
         </>
     )
 }
