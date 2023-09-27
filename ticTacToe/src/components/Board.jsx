@@ -20,23 +20,30 @@ export default function board() {
         -> Each element should initially load with a value of null.
     */ }
     const [square, setSquare] = useState(Array(9).fill(null))
+
+    function handleClick() {
+        setSquare('X')
+        {/*Won't be update bc closure!! */}
+        console.log(`handleClick: ${value}`)
+    }
+
     return (
         <>
             <div className="mt-4 mb-12 p-4 rounded-sm bg-gradient-to-bl from-violet-800 to-cyan-500">
                 <div className="board-row">
-                        <Square value={square[0]}/>
-                        <Square value={square[1]}/>
-                        <Square value={square[2]}/>
+                        <Square value={square[0]} onSquareClick={handleClick}/>
+                        <Square value={square[1]} onSquareClick={handleClick}/>
+                        <Square value={square[2]} onSquareClick={handleClick}/>
                 </div>
                 <div className="board-row">
-                    <Square value={square[3]}/>
-                    <Square value={square[4]}/>
-                    <Square value={square[5]}/>
+                    <Square value={square[3]} onSquareClick={handleClick}/>
+                    <Square value={square[4]} onSquareClick={handleClick}/>
+                    <Square value={square[5]} onSquareClick={handleClick}/>
                 </div>
                 <div className="board-row">
-                    <Square value={square[6]}/>
-                    <Square value={square[7]}/>
-                    <Square value={square[8]}/>
+                    <Square value={square[6]} onSquareClick={handleClick}/>
+                    <Square value={square[7]} onSquareClick={handleClick}/>
+                    <Square value={square[8]} onSquareClick={handleClick}/>
                 </div>
             </div>
         </>

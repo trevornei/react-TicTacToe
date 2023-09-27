@@ -29,12 +29,6 @@ export default function Square ({ value, onSquareClick }) {
     // Comment out state to be passed up to Board.jsx because we CANNOT update state directly from Square.
     // Next step is to pass down the function from the board component. 
     // const [value, setValue] = useState("")
-
-    function handleClick() {
-        setValue('X')
-        {/*Won't be update bc closure!! */}
-        console.log(`handleClick: ${value}`)
-    }
     return (
         <>
             <div className="square rounded-sm shadow-md shadow-green-200 " onClick={onSquareClick}>
