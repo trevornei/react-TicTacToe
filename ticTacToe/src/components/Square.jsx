@@ -22,6 +22,7 @@ export default function Square () {
 
     function handleClick() {
         setValue('X')
+        console.log(`handleClick: ${value}`)
     }
     return (
         <>
