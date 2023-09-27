@@ -16,9 +16,17 @@ import { useState } from "react";
 
 // Change handleClick() from console.log() to the fn that sets the new value.
 
+// NOTE: Now that we have a working proof of handleClick() working and returning 'X' inside each square that is clicked, we need to Lift the State Up.
+// We need to lift the state up because for the game to be able to validate who is the winner, we need to be able to share this state with the more than the square component.
 
-export default function Square () {
-    const [value, setValue] = useState("")
+// Collecting Data From Multiple children || Having two child components talk to one another... 
+// State needs to be shared in the parent and passed down  through props.
+
+
+
+export default function Square ({ value }) {
+    // Comment out state to be passed up to Board.jsx
+    // const [value, setValue] = useState("")
 
     function handleClick() {
         setValue('X')
