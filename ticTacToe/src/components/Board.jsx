@@ -18,22 +18,55 @@ export default function board() {
         -> This is because useState callback fn creates an arary with 9 elements.
         -> Every when time read is passed down, it will be given a number corresponding with the elements unique index in the Array.
         -> Each element should initially load with a value of null.
-    */ }
+    */}
     const [squares, setSquares] = useState(Array(9).fill(null))
+    const [xIsNext, setXIsNext] = useState(true)
 
     function handleClick(i) {
         {/*
-            We need to factor in that for each click, we need to take account for the index that the click is taking place in.
+            We need to factor in that for each click, we need to take account for the index that the click is taking place in.  
+            The variable nextSquares creates a copy of the squares array the .slice() method. 
+                -> This is important because we are able to replace the data with a new copy with the altered data.
+                -> The goal here is to NOT mutate the squares array, rather make a copy.
+                -> The 'time travel' feature of the app is dependent on the original array remaining intact and altering the data in a copied array.
         */}
+
+        /*
+            Preventing squares from overriding the first click:
+            My first attempt looked like this
+             
+            if (nextSquares === 'X' || nextSquares === 'O') {
+            return
+            }
+
+            ---> ? NOTE: I do not understand why I would be checking the squares array since it is important to NOT manipulate the original array.
+
+            Regardless, I learned that if condition is truthy, then using the keyword return will abort the function.
+        */
+
+        if (squares[i]) {
+            return
+        }
+
         const nextSquares = squares.slice()
-        nextSquares[i] = 'X'
+        
+        if (xIsNext) {
+            nextSquares[i] = 'X'
+        }  else {
+            nextSquares[i] = 'O'
+        }
         setSquares(nextSquares)
+        setXIsNext(!xIsNext)
     }
+
+    console.log(squares)
 
     return (
         <>
             <div className="mt-4 mb-12 p-4 rounded-sm bg-gradient-to-bl from-violet-800 to-cyan-500">
                 <div className="board-row">
+                    {/*NOTE: onSquareClick takes an arrow function. The code after the arrow => runs when the component is clicked.
+                        -> handle click takes an argument of the index for the element of the squares state. */}
                         <Square value={squares[0]} onSquareClick={() => handleClick(0)}/>
                         <Square value={squares[1]} onSquareClick={() => handleClick(1)}/>
                         <Square value={squares[2]} onSquareClick={() => handleClick(2)}/>
