@@ -18,16 +18,17 @@ import { useState } from "react";
 
 
 export default function Square () {
-    const [value, setValue] = useState(null)
+    const [value, setValue] = useState("")
 
     function handleClick() {
         setValue('X')
+        {/*Won't be update bc closure!! */}
         console.log(`handleClick: ${value}`)
     }
     return (
         <>
-            <div className="square rounded-sm shadow-md shadow-green-200 ">
-                <button onClick={handleClick}>{value}</button>
+            <div className="square rounded-sm shadow-md shadow-green-200 " onClick={handleClick}>
+                <button>{value}</button>
             </div>
         </>
     )
