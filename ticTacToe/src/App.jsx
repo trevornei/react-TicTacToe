@@ -31,7 +31,7 @@ import {Routes, Route} from 'react-router-dom'
 export default function App() {
   return (
     <>
-    <div className="w-full h-full mx-auto my-32 flex flex-col items-center justify-center bg-gradient-to-r from-blue-200 to-blue-500 rounded-md">
+    <div className="w-screen h-screen flex flex-col items-center justify-center bg-gradient-to-r shadow-lg shadow-slate-500 from-blue-200 to-blue-500 rounded-md">
         <Title/>
         <Board/>
     </div>    

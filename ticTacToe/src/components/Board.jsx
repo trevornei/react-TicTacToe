@@ -19,31 +19,34 @@ export default function board() {
         -> Every when time read is passed down, it will be given a number corresponding with the elements unique index in the Array.
         -> Each element should initially load with a value of null.
     */ }
-    const [square, setSquare] = useState(Array(9).fill(null))
+    const [squares, setSquares] = useState(Array(9).fill(null))
 
-    function handleClick() {
-        setSquare('X')
-        {/*Won't be update bc closure!! */}
-        console.log(`handleClick: ${value}`)
+    function handleClick(i) {
+        {/*
+            We need to factor in that for each click, we need to take account for the index that the click is taking place in.
+        */}
+        const nextSquares = squares.slice()
+        nextSquares[i] = 'X'
+        setSquares(nextSquares)
     }
 
     return (
         <>
             <div className="mt-4 mb-12 p-4 rounded-sm bg-gradient-to-bl from-violet-800 to-cyan-500">
                 <div className="board-row">
-                        <Square value={square[0]} onSquareClick={handleClick}/>
-                        <Square value={square[1]} onSquareClick={handleClick}/>
-                        <Square value={square[2]} onSquareClick={handleClick}/>
+                        <Square value={squares[0]} onSquareClick={() => handleClick(0)}/>
+                        <Square value={squares[1]} onSquareClick={() => handleClick(1)}/>
+                        <Square value={squares[2]} onSquareClick={() => handleClick(2)}/>
                 </div>
                 <div className="board-row">
-                    <Square value={square[3]} onSquareClick={handleClick}/>
-                    <Square value={square[4]} onSquareClick={handleClick}/>
-                    <Square value={square[5]} onSquareClick={handleClick}/>
+                    <Square value={squares[3]} onSquareClick={() => handleClick(3)}/>
+                    <Square value={squares[4]} onSquareClick={() => handleClick(4)}/>
+                    <Square value={squares[5]} onSquareClick={() => handleClick(5)}/>
                 </div>
                 <div className="board-row">
-                    <Square value={square[6]} onSquareClick={handleClick}/>
-                    <Square value={square[7]} onSquareClick={handleClick}/>
-                    <Square value={square[8]} onSquareClick={handleClick}/>
+                    <Square value={squares[6]} onSquareClick={() => handleClick(6)}/>
+                    <Square value={squares[7]} onSquareClick={() => handleClick(7)}/>
+                    <Square value={squares[8]} onSquareClick={() => handleClick(8)}/>
                 </div>
             </div>
         </>
