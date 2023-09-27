@@ -21,11 +21,13 @@ import { useState } from "react";
 
 // Collecting Data From Multiple children || Having two child components talk to one another... 
 // State needs to be shared in the parent and passed down  through props.
+// Pass down props as { onSquareClick }
 
 
 
-export default function Square ({ value }) {
-    // Comment out state to be passed up to Board.jsx
+export default function Square ({ value, onSquareClick }) {
+    // Comment out state to be passed up to Board.jsx because we CANNOT update state directly from Square.
+    // Next step is to pass down the function from the board component. 
     // const [value, setValue] = useState("")
 
     function handleClick() {
@@ -35,7 +37,7 @@ export default function Square ({ value }) {
     }
     return (
         <>
-            <div className="square rounded-sm shadow-md shadow-green-200 " onClick={handleClick}>
+            <div className="square rounded-sm shadow-md shadow-green-200 " onClick={onSquareClick}>
                 <button>{value}</button>
             </div>
         </>
