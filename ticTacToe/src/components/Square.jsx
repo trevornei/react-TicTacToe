@@ -14,16 +14,18 @@ import { useState } from "react";
 // value will store the value. 
 // setValue is a function that changes the value. 
 
+// Change handleClick() from console.log() to the fn that sets the new value.
 
-export default function Square ({ value }) {
+
+export default function Square () {
     const [value, setValue] = useState(null)
 
     function handleClick() {
-        console.log(`Clicked square number: ${value} :D`)
+        setValue('X')
     }
     return (
         <>
-            <div className="square">
+            <div className="square rounded-sm shadow-md shadow-green-200 ">
                 <button onClick={handleClick}>{value}</button>
             </div>
         </>
