@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import Square from "./Square"
+import GamePlay from '../components/GamePlay'
 
 // Create a function called square and add export default statement. 
 // Square() should return a button with "x" as the text
@@ -21,6 +22,7 @@ export default function board() {
     */}
     const [squares, setSquares] = useState(Array(9).fill(null))
     const [xIsNext, setXIsNext] = useState(true)
+    const [status, setStatus] = useState('Turn: X')
 
     /*
         Validate Winner: Make a function called isWinner.
@@ -50,51 +52,54 @@ export default function board() {
         }
         return null;
     }
-
+    
     function handleClick(i) {
         /*
-            We need to factor in that for each click, we need to take account for the index that the click is taking place in.  
-            The variable nextSquares creates a copy of the squares array the .slice() method. 
-                -> This is important because we are able to replace the data with a new copy with the altered data.
-                -> The goal here is to NOT mutate the squares array, rather make a copy.
-                -> The 'time travel' feature of the app is dependent on the original array remaining intact and altering the data in a copied array.
+        We need to factor in that for each click, we need to take account for the index that the click is taking place in.  
+        The variable nextSquares creates a copy of the squares array the .slice() method. 
+        -> This is important because we are able to replace the data with a new copy with the altered data.
+        -> The goal here is to NOT mutate the squares array, rather make a copy.
+        -> The 'time travel' feature of the app is dependent on the original array remaining intact and altering the data in a copied array.
         */
-
-        /*
-            Preventing squares from overriding the first click:
-            My first attempt looked like this
-             
-            if (nextSquares === 'X' || nextSquares === 'O') {
-            return
-            }
-
-            ---> ? NOTE: I do not understand why I would be checking the squares array since it is important to NOT manipulate the original array.
-
-            Regardless, I learned that if condition is truthy, then using the keyword return will abort the function.
-        */
-
-        if (squares[i] || isWinnner(squares)) {
-            return
+       
+       /*
+       Preventing squares from overriding the first click:
+       My first attempt looked like this
+       
+       if (nextSquares === 'X' || nextSquares === 'O') {
+           return
         }
-
+        
+        ---> ? NOTE: I do not understand why I would be checking the squares array since it is important to NOT manipulate the original array.
+        
+        Regardless, I learned that if condition is truthy, then using the keyword return will abort the function.
+        */
+       
+       if (squares[i] || isWinnner(squares)) {
+           return
+        }
+        
         const nextSquares = squares.slice()
         
         if (xIsNext) {
-            nextSquares[i] = 'X'
-        }  else {
             nextSquares[i] = 'O'
+        }  else {
+            nextSquares[i] = 'X'
         }
         setSquares(nextSquares)
         setXIsNext(!xIsNext)
+        setStatus(whoWins())
     }
 
-    const winner = isWinnner(squares)
-    let status
-    if (winner) {
-        status = `${winner} won the game!`
-    } else {
-        status = `Next ${xIsNext ? 'X' : 'O'}`
+    function whoWins() {
+        const winner = isWinnner(squares)
+        if (winner) {
+            return `${winner} won the game!`
+        } else {
+            return `Next ${xIsNext ? 'X' : 'O'}`
+        }
     }
+
 
     console.log(squares)
 
@@ -119,9 +124,7 @@ export default function board() {
                     <Square value={squares[8]} onSquareClick={() => handleClick(8)}/>
                 </div>
             </div>
-            <div className="status">
-                {status}
-            </div>
+            <GamePlay status={status}/>
         </>
     )
 }
